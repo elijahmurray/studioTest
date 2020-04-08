@@ -15,7 +15,7 @@ run:   `cd backend/ && rails s`
 
 
 Open ANOTHER terminal
-get into the root of the project 'studioTest`
+get into the root of the project 'studioTest'
 run:   `yarn start`
 
 I tried to do the testing for 20 minutes but I will be honest I have not done testing before so I did not want to take a long time focusing
