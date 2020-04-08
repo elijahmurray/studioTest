@@ -7,7 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 import { Task } from '../types';
 
 function Home(props: any) {
-
+    let today = new Date();
+    let date = today.getDate() + "-"+ (parseInt(today.getMonth())+1) +"-"+today.getFullYear();
     const navigation = useNavigation();
     
     useEffect(() => {
@@ -24,7 +25,7 @@ function Home(props: any) {
         props.tasks ?
         <ScrollView>
             <View style={styles.page}>
-                <Text style={styles.subHeader}>Date</Text>
+                <Text style={styles.subHeader}>{date}</Text>
                 <Text style={styles.subHeader}>{props.tasks.length} Tasks</Text>
                 <View>
                     <Icon color="blue" size={50} style={styles.icon} name="plus-circle" onPress={() => navigation.navigate('AddTask')}/>

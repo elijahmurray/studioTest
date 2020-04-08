@@ -38,9 +38,7 @@ export default function taskReducer(state={tasks: []}, action){
             }else {
                 state.tasks = [state.tasks.slice(0,idxOfTaskToDelete), state.tasks.slice(idxOfTaskToDelete + 1, state.tasks.length+1)].flat();
             }
-            debugger
             return {...state, tasks: [...state.tasks]}
-
 
         default: 
             return state
