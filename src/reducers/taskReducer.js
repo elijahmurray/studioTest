@@ -27,14 +27,16 @@ export default function taskReducer(state={tasks: []}, action){
             return {...state, tasks: [...state.tasks]}
 
         case DELETE_TASK:
-
             //find task and slice it
 
             //get id of task to swap
+            if(state.tasks.length === 1){
+                state.tasks = []
+            }
             var taskToDelete = state.tasks.find(task => task.desc === action.payload.task.desc)
             var idxOfTaskToDelete = state.tasks.indexOf(taskToDelete)
             if(idxOfTaskToDelete === 0){
-                state.tasks.slice(idxOfTaskToDelete + 1, state.tasks.length+1)
+                state.tasks = state.tasks.slice(idxOfTaskToDelete + 1, state.tasks.length+1)
             }else {
                 state.tasks = [state.tasks.slice(0,idxOfTaskToDelete), state.tasks.slice(idxOfTaskToDelete + 1, state.tasks.length+1)].flat();
             }

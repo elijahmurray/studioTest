@@ -13,13 +13,13 @@ function Home(props: any) {
     
     useEffect(() => {
         async function getTasks(){
-            const data = await fetch('http://localhost:8000/tasks');
+            const data = await fetch('http://localhost:3000/get_tasks');
             const response = await data.json();
             props.fillRedux(response);
+
         }
         getTasks();  
     }, [])
-
 
     return (
         props.tasks ?

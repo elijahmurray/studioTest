@@ -24,16 +24,15 @@ function addTaskInput(props: any){
             <TextInput
                 style={styles.input}
                 placeholder="description"
-                onChangeText={(desc: any) => setDesc(desc)}
+                onChangeText={(desc: string) => setDesc(desc)}
             />
             <Text style={styles.subHeader}>Time</Text>
             <TextInput
                 style={styles.input}
                 placeholder="time"
-                onChangeText={(time: any) => setTime(time)}
+                onChangeText={(time: string) => setTime(time)}
             />
             <Button style={styles.addTaskButton} color="black" onPress={() => completeTask(desc, time)}>Add</Button>
-            {/* <Button color="black" onPress={() => navigation.navigate('Home')}>Back To Tasks</Button> */}
         </View>
     )
 }
@@ -41,6 +40,7 @@ function addTaskInput(props: any){
 const styles = StyleSheet.create({
     header: {
         alignSelf: 'center',
+        paddingTop: 5,
         fontSize: 24,
         paddingBottom: 50,
         textDecorationLine: 'underline'
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         paddingBottom: 20
     },
     addTaskButton: {
-        paddingBottom: 30
+        textAlign: 'center'
     }
 })
 
