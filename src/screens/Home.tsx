@@ -16,7 +16,6 @@ function Home(props: any) {
             const data = await fetch('http://localhost:3000/get_tasks');
             const response = await data.json();
             props.fillRedux(response);
-
         }
         getTasks();  
     }, [])

@@ -13,7 +13,6 @@ export default function taskReducer(state={tasks: []}, action){
                 completed: false,
                 time: action.payload.time
             }
-            console.log(task)
             return {...state, tasks: [...state.tasks, task].flat()}
 
         case COMPLETE_TASK:
