@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Text, View, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-import { Button } from 'exoflex';
-import { fillRedux } from '../reduxActions/actions';
+import React, { useEffect } from 'react';
+import { Text, View, ScrollView, StyleSheet } from 'react-native';
+import { fillRedux, completeTask, deleteTask } from '../reduxActions/actions';
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
-type Task = {
-    desc: string;
-}
+import { Task } from '../types';
 
 function Home(props: any) {
 
@@ -26,16 +23,19 @@ function Home(props: any) {
     return (
         props.tasks ?
         <ScrollView>
-        {console.log(props.tasks.length)}
-            <View style={styles.form}>
-            <Icon name="plus" onPress={() => navigation.navigate('AddTask')}/>
-            {props.tasks.map((task: Task)  => (
-                <>
-                <View key={task.desc}>
-                    <Text style={{fontSize: 30}}>{task.desc}</Text>
+            <View style={styles.page}>
+                <Text style={styles.subHeader}>Date</Text>
+                <Text style={styles.subHeader}>{props.tasks.length} Tasks</Text>
+                <View>
+                    <Icon color="blue" size={50} style={styles.icon} name="plus-circle" onPress={() => navigation.navigate('AddTask')}/>
+                    {props.tasks.map((task: Task)  => (
+                        <View style={styles.task} key={task.desc}>
+                            <Icon size={17} style={styles.checkMark} onPress={() => props.completeTask(task)} name={task.completed ? "check-square" : "square"}/>
+                            <Text style={task.completed ? styles.strikeText : styles.text}>{task.desc}</Text>
+                            <Icon size={20} style={styles.deleteMark} onPress={() => props.deleteTask(task)} name="backspace"/>
+                        </View>
+                    ))}
                 </View>
-                </>
-            ))}
             </View>
         </ScrollView>
         :
@@ -48,11 +48,45 @@ function Home(props: any) {
 }
 
 const styles = StyleSheet.create({
-    form: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+    icon: {
+        marginRight: 10,
+        left: 280,
+        bottom: 80,
+        padding: 10,
+        borderRadius: 50
     },
+    subHeader: {
+        fontSize: 26,
+        marginBottom: 10,
+        fontWeight: "500",
+    },
+    page: {
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        left: 60
+    },
+    task: {
+        flexDirection: "row"
+    },
+    checkMark: {
+        paddingRight: 10
+    },
+    text: {
+        fontSize: 26,
+        bottom: 8,
+        marginBottom: 10,
+        fontWeight: "500",
+    },
+    strikeText: {
+        fontSize: 26,
+        bottom: 8,
+        marginBottom: 10,
+        fontWeight: "500",
+        textDecorationLine: 'line-through'
+    },
+    deleteMark: {
+        paddingLeft: 10
+    }
 })
 
 const mapStateToProps = (state: any) => {
@@ -61,4 +95,4 @@ const mapStateToProps = (state: any) => {
     }
 }
 
-export default connect(mapStateToProps, {fillRedux})(Home);
+export default connect(mapStateToProps, {fillRedux, completeTask, deleteTask})(Home);

@@ -1,13 +1,19 @@
 {
     "tasks": [
         {
-         "desc": "1st desc"
+            "desc": "1st desc",
+            "completed": false,
+            "time": "7:00 am"
         },
         {
-            "desc": "2nd desc"
+            "desc": "2nd desc",
+            "completed": false,
+            "time": "9:30 am"
         },
         {
-            "desc": "3rd desc"
+            "desc": "3rd desc",
+            "completed": false,
+            "time": "11:00 am"
         }
     ]
 }
